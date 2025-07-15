@@ -76,7 +76,7 @@
     }
 
     body, p, audio, .input-container input {
-      transition: color 1.4s ease, border-color 1.4s ease;
+      transition: color 0.1s ease, border-color 0.1s ease;
     }
   </style>
 </head>
@@ -131,32 +131,34 @@
   </script>
 
   <script>
-    const minGreen = 200; // Valor mínimo do verde (mais escuro)
-    const maxGreen = 255; // Valor máximo do verde (mais vivo)
-  
-    function randomGreenValue() {
-      // Gera valor de verde entre min e max
-      return Math.floor(Math.random() * (maxGreen - minGreen + 1)) + minGreen;
-    }
-    
-    function updateGreenColor() {
-      const g = randomGreenValue();
-      const color = `rgb(0, ${g}, 0)`; // verde com verde variável
-  
-      // Aplica cor nos textos
-      document.body.style.color = color;
-      // Inputs: borda e texto
-      document.querySelectorAll('.input-container input').forEach(input => {
-        input.style.color = color;
-        input.style.borderColor = color;
-      });
-      // Player (controla cor do texto do player)
-      document.querySelector('audio').style.color = color;
-    }
-  
-    // Começa e atualiza a cada 1.5 segundos
-    updateGreenColor();
-    setInterval(updateGreenColor, 130);
-  </script>
+  const minGreen = 220;
+  const maxGreen = 255;
+
+  function randomGreenValue() {
+    return Math.floor(Math.random() * (maxGreen - minGreen + 1)) + minGreen;
+  }
+
+  function randomInterval() {
+    return Math.floor(Math.random() * (600 - 100 + 1)) + 100;
+  }
+
+  function updateGreenColor() {
+    const g = randomGreenValue();
+    const color = `rgb(0, ${g}, 0)`;
+
+    document.body.style.color = color;
+    document.querySelectorAll('.input-container input').forEach(input => {
+      input.style.color = color;
+      input.style.borderColor = color;
+    });
+    document.querySelector('audio').style.color = color;
+
+    // Próxima chamada com intervalo aleatório
+    setTimeout(updateGreenColor, randomInterval());
+  }
+
+  // Começa a oscilação
+  updateGreenColor();
+</script>
 </body>
 </html>
