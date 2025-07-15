@@ -8,7 +8,7 @@
     body {
       margin: 0;
       background-color: #000;
-      color: #0f0;
+      color: #0f3;
       font-family: monospace;
       display: flex;
       flex-direction: column;
@@ -33,24 +33,59 @@
       height: 50px;
       font-size: 2rem;
       text-align: center;
-      background-color: #111;
-      color: #0f0;
-      border: 1px solid #0f0;
+      background-color: #000;
+      color: #0f3;
+      border: 1px solid #0f3;
       outline: none;
+      text-transform: uppercase;
     }
 
     .input-container input:focus {
-      border-color: #0ff;
+      border-color: #3f6;
     }
   </style>
 </head>
 <body>
   <h1>ENTER THE CODE</h1>
   <div class="input-container">
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
+    <input type="text" maxlength="1" id="char1" />
+    <input type="text" maxlength="1" id="char2" />
+    <input type="text" maxlength="1" id="char3" />
+    <input type="text" maxlength="1" id="char4" />
   </div>
+
+  <script>
+    const inputs = document.querySelectorAll(".input-container input");
+    const correctCode = "SEED";
+
+    inputs.forEach((input, index) => {
+      input.addEventListener("focus", () => {
+        input.value = "";
+      });
+
+      input.addEventListener("input", () => {
+        const val = input.value.toUpperCase();
+        input.value = val;
+
+        // Move to next input if exists
+        if (val && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+
+        // If last input filled, check the code
+        if (index === inputs.length - 1) {
+          const code = Array.from(inputs).map(i => i.value).join("").toUpperCase();
+          if (code === correctCode) {
+            window.location.href = "areyouready.html";
+          }
+        }
+      });
+    });
+
+    // Autofocus no primeiro input ao carregar
+    window.onload = () => {
+      inputs[0].focus();
+    };
+  </script>
 </body>
 </html>
