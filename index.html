@@ -78,15 +78,63 @@
   body, p, audio, .input-container input {
     transition: text-shadow 0.1s ease;
   }
+
+  .player {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background-color: #000;
+      border: 1px solid #0f3;
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 12px #0f35;
+    }
+
+    .player button {
+      background-color: transparent;
+      border: 2px solid #0f3;
+      color: #0f3;
+      font-family: 'Tektur', monospace;
+      font-size: 1.2rem;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .player button:hover {
+      background-color: #0f3;
+      color: #000;
+      box-shadow: 0 0 8px #3f6;
+    }
+
+    .progress-bar {
+      width: 200px;
+      height: 6px;
+      background-color: #033;
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress {
+      height: 100%;
+      background-color: #0f3;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
 </style>
 </head>
 <body>
 <p class="fade mystic-text">There is a voice beyond the silence.<br>Will you dare to hear it?</p>
 
-<audio class="fade" controls>
-  <source src="the-message.mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
-</audio>
+  <div class="player">
+    <button id="playPause">►</button>
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
+    </div>
+  </div>
+  <audio id="audio" src="the-message.mp3"></audio>
 
 <p class="fade challenge-text" style="animation-delay: 6.5s;">Prove your value</p>
 
@@ -150,5 +198,31 @@
 
   updateTextGlow();
 </script>
+
+<script>
+    const audio = document.getElementById('audio');
+    const playPauseBtn = document.getElementById('playPause');
+    const progress = document.getElementById('progress');
+
+    playPauseBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playPauseBtn.textContent = '❚❚';
+      } else {
+        audio.pause();
+        playPauseBtn.textContent = '►';
+      }
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      const percent = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = percent + '%';
+    });
+
+    audio.addEventListener('ended', () => {
+      playPauseBtn.textContent = '►';
+      progress.style.width = '0%';
+    });
+  </script>
 </body>
 </html>
