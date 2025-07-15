@@ -44,6 +44,57 @@
     .glow {
       text-shadow: 0 0 10px rgba(0, 255, 100, 0.6);
     }
+
+.mystic-form {
+    margin-top: 40px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+  }
+
+  .mystic-form p {
+    color: #0a3;
+    font-family: 'Tektur', monospace;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(0, 255, 100, 0.4);
+  }
+
+  .mystic-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #0a3;
+    background-color: #000;
+    color: #0f3;
+    font-family: 'Tektur', monospace;
+    font-size: 1rem;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  .mystic-form input:focus {
+    border-color: #3f6;
+  }
+
+  .mystic-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0a3;
+    border: none;
+    color: #000;
+    font-family: 'Tektur', monospace;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .mystic-form button:hover {
+    background-color: #3f6;
+  }
   </style>
 </head>
 <body>
@@ -67,6 +118,13 @@
   <source src="the-seed" type="audio/mpeg" />
   Your browser does not support the audio element.
 </audio>
+
+<div class="mystic-form">
+  <p>Do you dare to go deeper and be granted the gift of creation?</p>
+  <input type="text" placeholder="Enter your chosen name" name="nickname" />
+  <input type="email" placeholder="Your sacred email" name="email" />
+  <button type="submit">Answer the Call</button>
+</div>
 
 </body>
 </html>
