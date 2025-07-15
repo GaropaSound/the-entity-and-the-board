@@ -74,6 +74,10 @@
     .input-container input:focus {
       border-color: #3f6;
     }
+
+    body, p, audio, .input-container input {
+      transition: color 1.4s ease, border-color 1.4s ease;
+    }
   </style>
 </head>
 <body>
@@ -124,6 +128,35 @@
     window.onload = () => {
       inputs[0].focus();
     };
+  </script>
+
+  <script>
+    const minGreen = 100; // Valor mínimo do verde (mais escuro)
+    const maxGreen = 255; // Valor máximo do verde (mais vivo)
+  
+    function randomGreenValue() {
+      // Gera valor de verde entre min e max
+      return Math.floor(Math.random() * (maxGreen - minGreen + 1)) + minGreen;
+    }
+  
+    function updateGreenColor() {
+      const g = randomGreenValue();
+      const color = `rgb(0, ${g}, 0)`; // verde com verde variável
+  
+      // Aplica cor nos textos
+      document.body.style.color = color;
+      // Inputs: borda e texto
+      document.querySelectorAll('.input-container input').forEach(input => {
+        input.style.color = color;
+        input.style.borderColor = color;
+      });
+      // Player (controla cor do texto do player)
+      document.querySelector('audio').style.color = color;
+    }
+  
+    // Começa e atualiza a cada 1.5 segundos
+    updateGreenColor();
+    setInterval(updateGreenColor, 1500);
   </script>
 </body>
 </html>
