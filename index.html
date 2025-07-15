@@ -1,164 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Entity</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tektur&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      background-color: #000;
-      color: #0f3;
-      font-family: 'Tektur', monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Entity</title>
+<link href="https://fonts.googleapis.com/css2?family=Tektur&display=swap" rel="stylesheet" />
+<style>
+  body {
+    margin: 0;
+    background-color: #000;
+    color: #0f3;
+    font-family: 'Tektur', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
 
-    .fade {
-      opacity: 0;
-      animation-fill-mode: forwards;
-      animation-name: fadeIn;
-      animation-timing-function: ease-in-out;
-    }
+  .fade {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-name: fadeIn;
+    animation-timing-function: ease-in-out;
+  }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
     }
+  }
 
-    .mystic-text, .challenge-text {
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      white-space: pre-line;
-      animation-duration: 2s;
-      animation-delay: 0s;
-    }
+  .mystic-text, .challenge-text {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    white-space: pre-line;
+    animation-duration: 2s;
+    animation-delay: 0s;
+  }
 
-    audio {
-      margin-bottom: 30px;
-      width: 300px;
-      animation-duration: 2s;
-      animation-delay: 4s;
-    }
+  audio {
+    margin-bottom: 30px;
+    width: 300px;
+    animation-duration: 2s;
+    animation-delay: 4s;
+  }
 
-    .input-container {
-      display: flex;
-      gap: 10px;
-      animation-duration: 2s;
-      animation-delay: 7s;
-      opacity: 0;
-      animation-fill-mode: forwards;
-      animation-name: fadeIn;
-      animation-timing-function: ease-in-out;
-    }
+  .input-container {
+    display: flex;
+    gap: 10px;
+    animation-duration: 2s;
+    animation-delay: 7s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-name: fadeIn;
+    animation-timing-function: ease-in-out;
+  }
 
-    .input-container input {
-      width: 50px;
-      height: 50px;
-      border-radius: 4px;
-      font-size: 2rem;
-      text-align: center;
-      background-color: #000;
-      color: #0f3;
-      border: 1px solid #0f3;
-      outline: none;
-      text-transform: uppercase;
-    }
+  .input-container input {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    font-size: 2rem;
+    text-align: center;
+    background-color: #000;
+    color: #0f3;
+    border: 1px solid #0f3;
+    outline: none;
+    text-transform: uppercase;
+  }
 
-    .input-container input:focus {
-      border-color: #3f6;
-    }
+  .input-container input:focus {
+    border-color: #3f6;
+  }
 
-    body, p, audio, .input-container input {
-      transition: color 0.1s ease, border-color 0.1s ease;
-    }
-  </style>
+  .glow {
+    transition: text-shadow 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  body, p, audio, .input-container input {
+    text-shadow: 0 0 5px rgba(0, 255, 100, 0.5);
+    box-shadow: 0 0 10px rgba(0, 255, 100, 0.5);
+  }
+</style>
 </head>
 <body>
-  <p class="fade mystic-text">There is a voice beyond the silence.<br>Will you dare to hear it?</p>
+<p class="fade mystic-text">There is a voice beyond the silence.<br>Will you dare to hear it?</p>
 
-  <audio class="fade" controls>
-    <source src="YOUR_AUDIO_FILE.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
+<audio class="fade" controls>
+  <source src="YOUR_AUDIO_FILE.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
 
-  <p class="fade challenge-text" style="animation-delay: 6.5s;">Prove your value</p>
+<p class="fade challenge-text" style="animation-delay: 6.5s;">Prove your value</p>
 
-  <div class="input-container">
-    <input type="text" maxlength="1" id="char1" />
-    <input type="text" maxlength="1" id="char2" />
-    <input type="text" maxlength="1" id="char3" />
-    <input type="text" maxlength="1" id="char4" />
-  </div>
+<div class="input-container">
+  <input type="text" maxlength="1" id="char1" />
+  <input type="text" maxlength="1" id="char2" />
+  <input type="text" maxlength="1" id="char3" />
+  <input type="text" maxlength="1" id="char4" />
+</div>
 
-  <script>
-    const inputs = document.querySelectorAll(".input-container input");
-    const correctCode = "SEED";
+<script>
+  const inputs = document.querySelectorAll(".input-container input");
+  const correctCode = "SEED";
 
-    inputs.forEach((input, index) => {
-      input.addEventListener("focus", () => {
-        for (let i = index; i < inputs.length; i++) {
-          inputs[i].value = "";
-        }
-      });
-
-      input.addEventListener("input", () => {
-        const val = input.value.toUpperCase();
-        input.value = val;
-
-        if (val && index < inputs.length - 1) {
-          inputs[index + 1].focus();
-        }
-
-        if (index === inputs.length - 1) {
-          const code = Array.from(inputs).map(i => i.value).join("").toUpperCase();
-          if (code === correctCode) {
-            window.location.href = "areyouready.html";
-          }
-        }
-      });
+  inputs.forEach((input, index) => {
+    input.addEventListener("focus", () => {
+      for (let i = index; i < inputs.length; i++) {
+        inputs[i].value = "";
+      }
     });
 
-    window.onload = () => {
-      inputs[0].focus();
-    };
-  </script>
+    input.addEventListener("input", () => {
+      const val = input.value.toUpperCase();
+      input.value = val;
 
-  <script>
-  const minGreen = 220;
-  const maxGreen = 255;
+      if (val && index < inputs.length - 1) {
+        inputs[index + 1].focus();
+      }
 
-  function randomGreenValue() {
-    return Math.floor(Math.random() * (maxGreen - minGreen + 1)) + minGreen;
-  }
-
-  function randomInterval() {
-    return Math.floor(Math.random() * (600 - 100 + 1)) + 100;
-  }
-
-  function updateGreenColor() {
-    const g = randomGreenValue();
-    const color = `rgb(0, ${g}, 0)`;
-
-    document.body.style.color = color;
-    document.querySelectorAll('.input-container input').forEach(input => {
-      input.style.color = color;
-      input.style.borderColor = color;
+      if (index === inputs.length - 1) {
+        const code = Array.from(inputs).map(i => i.value).join("").toUpperCase();
+        if (code === correctCode) {
+          window.location.href = "areyouready.html";
+        }
+      }
     });
-    document.querySelector('audio').style.color = color;
+  });
 
-    // Próxima chamada com intervalo aleatório
-    setTimeout(updateGreenColor, randomInterval());
+  window.onload = () => {
+    inputs[0].focus();
+  };
+</script>
+
+<script>
+  function randomAlpha() {
+    return Math.random() * 0.6 + 0.2; // alpha entre 0.2 e 0.8
   }
 
-  // Começa a oscilação
-  updateGreenColor();
+  function updateGlow() {
+    const alpha = randomAlpha();
+    const textShadow = `0 0 8px rgba(0, 255, 100, ${alpha})`;
+    const boxShadow = `0 0 15px rgba(0, 255, 100, ${alpha})`;
+
+    document.body.style.textShadow = textShadow;
+    document.body.style.boxShadow = boxShadow;
+
+    document.querySelectorAll('p, audio, .input-container input').forEach(el => {
+      el.style.textShadow = textShadow;
+      el.style.boxShadow = boxShadow;
+    });
+
+    setTimeout(updateGlow, Math.floor(Math.random() * 500) + 100);
+  }
+
+  updateGlow();
 </script>
 </body>
 </html>
