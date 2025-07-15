@@ -75,13 +75,8 @@
     border-color: #3f6;
   }
 
-  .glow {
-    transition: text-shadow 0.1s ease, box-shadow 0.1s ease;
-  }
-
   body, p, audio, .input-container input {
-    text-shadow: 0 0 5px rgba(0, 255, 100, 0.5);
-    box-shadow: 0 0 10px rgba(0, 255, 100, 0.5);
+    transition: text-shadow 0.1s ease;
   }
 </style>
 </head>
@@ -137,26 +132,23 @@
 
 <script>
   function randomAlpha() {
-    return Math.random() * 0.6 + 0.2; // alpha entre 0.2 e 0.8
+    return Math.random() * 0.6 + 0.2; // brilho de 0.2 a 0.8
   }
 
-  function updateGlow() {
+  function updateTextGlow() {
     const alpha = randomAlpha();
-    const textShadow = `0 0 8px rgba(0, 255, 100, ${alpha})`;
-    const boxShadow = `0 0 15px rgba(0, 255, 100, ${alpha})`;
+    const glow = `0 0 8px rgba(0, 255, 100, ${alpha})`;
 
-    document.body.style.textShadow = textShadow;
-    document.body.style.boxShadow = boxShadow;
-
-    document.querySelectorAll('p, audio, .input-container input').forEach(el => {
-      el.style.textShadow = textShadow;
-      el.style.boxShadow = boxShadow;
+    // Aplica glow no texto (tudo que tem texto visível)
+    document.querySelectorAll('body, p, audio, .input-container input').forEach(el => {
+      el.style.textShadow = glow;
     });
 
-    setTimeout(updateGlow, Math.floor(Math.random() * 500) + 100);
+    // Faz nova alteração com delay aleatório
+    setTimeout(updateTextGlow, Math.floor(Math.random() * 500) + 100);
   }
 
-  updateGlow();
+  updateTextGlow();
 </script>
 </body>
 </html>
