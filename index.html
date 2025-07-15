@@ -32,7 +32,7 @@
       }
     }
 
-    .mystic-text {
+    .mystic-text, .challenge-text {
       font-size: 1.3rem;
       margin-bottom: 20px;
       white-space: pre-line;
@@ -52,6 +52,10 @@
       gap: 10px;
       animation-duration: 2s;
       animation-delay: 7s;
+      opacity: 0;
+      animation-fill-mode: forwards;
+      animation-name: fadeIn;
+      animation-timing-function: ease-in-out;
     }
 
     .input-container input {
@@ -65,28 +69,10 @@
       border: 1px solid #0f3;
       outline: none;
       text-transform: uppercase;
-      opacity: 0;
-      animation-fill-mode: forwards;
-      animation-name: fadeIn;
-      animation-timing-function: ease-in-out;
     }
 
     .input-container input:focus {
       border-color: #3f6;
-    }
-
-    /* Delay progressivo nos inputs */
-    .input-container input:nth-child(1) {
-      animation-delay: 4.5s;
-    }
-    .input-container input:nth-child(2) {
-      animation-delay: 4.8s;
-    }
-    .input-container input:nth-child(3) {
-      animation-delay: 5.1s;
-    }
-    .input-container input:nth-child(4) {
-      animation-delay: 5.4s;
     }
   </style>
 </head>
@@ -97,6 +83,8 @@
     <source src="YOUR_AUDIO_FILE.mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
+
+  <p class="fade challenge-text" style="animation-delay: 6.5s;">Prove your value</p>
 
   <div class="input-container">
     <input type="text" maxlength="1" id="char1" />
