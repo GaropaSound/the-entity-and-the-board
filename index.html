@@ -131,14 +131,14 @@
   </script>
 
   <script>
-    const minGreen = 100; // Valor mínimo do verde (mais escuro)
+    const minGreen = 200; // Valor mínimo do verde (mais escuro)
     const maxGreen = 255; // Valor máximo do verde (mais vivo)
   
     function randomGreenValue() {
       // Gera valor de verde entre min e max
       return Math.floor(Math.random() * (maxGreen - minGreen + 1)) + minGreen;
     }
-  
+    
     function updateGreenColor() {
       const g = randomGreenValue();
       const color = `rgb(0, ${g}, 0)`; // verde com verde variável
@@ -156,7 +156,7 @@
   
     // Começa e atualiza a cada 1.5 segundos
     updateGreenColor();
-    setInterval(updateGreenColor, 600);
+    setInterval(updateGreenColor, 130);
   </script>
 </body>
 </html>
