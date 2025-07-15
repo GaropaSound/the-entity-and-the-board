@@ -15,12 +15,23 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      text-align: center;
+    }
+
+    p {
+      margin: 0 0 20px;
+      font-size: 1.1rem;
+      color: #0f3;
     }
 
     h1 {
       margin-bottom: 20px;
       font-size: 1.5rem;
       letter-spacing: 2px;
+    }
+
+    audio {
+      margin-bottom: 30px;
     }
 
     .input-container {
@@ -46,7 +57,15 @@
   </style>
 </head>
 <body>
+  <p>Do you also feel there's a strange force in the world?</p>
+
+  <audio controls>
+    <source src="YOUR_AUDIO_FILE.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
   <h1>ENTER THE CODE</h1>
+
   <div class="input-container">
     <input type="text" maxlength="1" id="char1" />
     <input type="text" maxlength="1" id="char2" />
@@ -60,19 +79,20 @@
 
     inputs.forEach((input, index) => {
       input.addEventListener("focus", () => {
-        input.value = "";
+        // Limpa o input atual e todos os seguintes
+        for (let i = index; i < inputs.length; i++) {
+          inputs[i].value = "";
+        }
       });
 
       input.addEventListener("input", () => {
         const val = input.value.toUpperCase();
         input.value = val;
 
-        // Move to next input if exists
         if (val && index < inputs.length - 1) {
           inputs[index + 1].focus();
         }
 
-        // If last input filled, check the code
         if (index === inputs.length - 1) {
           const code = Array.from(inputs).map(i => i.value).join("").toUpperCase();
           if (code === correctCode) {
@@ -82,7 +102,6 @@
       });
     });
 
-    // Autofocus no primeiro input ao carregar
     window.onload = () => {
       inputs[0].focus();
     };
