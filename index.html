@@ -55,10 +55,35 @@
     .input-container input:focus {
       border-color: #3f6;
     }
+
+    .mystic-text {
+      color: #0f3;
+      font-family: 'Tektur', monospace;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 2s forwards, pulse 3s infinite 2s;
+      white-space: pre-line;
+    }
+  
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.6;
+      }
+    }
   </style>
 </head>
 <body>
-  <p>Do you also feel there's a strange force in the world?</p>
+  <p class="mystic-text">There is a voice beyond the silence.<br>Will you dare to hear it?</p>
 
   <audio controls>
     <source src="YOUR_AUDIO_FILE.mp3" type="audio/mpeg">
