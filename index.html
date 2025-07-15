@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Entity</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #0f0;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+    }
+
+    .input-container {
+      display: flex;
+      gap: 10px;
+    }
+
+    .input-container input {
+      width: 50px;
+      height: 50px;
+      font-size: 2rem;
+      text-align: center;
+      background-color: #111;
+      color: #0f0;
+      border: 1px solid #0f0;
+      outline: none;
+    }
+
+    .input-container input:focus {
+      border-color: #0ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>ENTER THE CODE</h1>
+  <div class="input-container">
+    <input type="text" maxlength="1" />
+    <input type="text" maxlength="1" />
+    <input type="text" maxlength="1" />
+    <input type="text" maxlength="1" />
+  </div>
+</body>
+</html>
